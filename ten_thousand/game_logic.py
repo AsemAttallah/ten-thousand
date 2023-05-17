@@ -19,11 +19,12 @@ class GameLogic:
             score += 1500
             return score
         
-        if dice_roll.count(1) == 6: # this if statement used to check the counts of (1) is equal 6 repetition
-            score += 4000
+        elif len(set(dice_roll)) == 3 and all(dice_roll.count(dice) == 2 for dice in set(dice_roll)): # this line of code used to check if we have 3 pairs of values if true will add 1500 score
+            score += 1500 
+            return score
 
         elif counts[1] >= 3: # if above condition not true, elif statement will check the counts of (1) is grater than or equal 3 repetition
-            score += 1000
+            score += (counts[1]-2)*1000
 
         else:  # if above condition not true elif statement will be excuted
             score += counts[1] * 100
@@ -33,15 +34,11 @@ class GameLogic:
         
         for i in range(len(dice_roll)): # this for loop used to add scores in specific conditions
             if dice_roll[i] > 1: # this if statement used to check value is grater than 1
-                if counts[dice_roll[i]] == 3: # if above condition true if statement will if the counts is equal 3 repetition
-                    score +=(dice_roll[i]*100)
-                    return score
-                elif counts[dice_roll[i]] >3: # if above condition not true elif statement will check if the counts is greater 3 repetition
+                if counts[dice_roll[i]] >=3: # if above condition not true elif statement will check if the counts is greater than or equal 3  repetition
                     score +=(counts[dice_roll[i]]-2)*(dice_roll[i]*100)
                     return score
 
         return score # this command to return the value that calculate_score method find it
-
     @staticmethod  # this command used to make the roll_dice method just accessible from GameLogic class
     def roll_dice(num_dice):
         '''
@@ -50,4 +47,4 @@ class GameLogic:
         dice_roll = tuple(random.randint(1, 6) for _ in range(num_dice)) # In this variable we calculate 6 random number and add it to tuple 
         return dice_roll
 
-    
+
