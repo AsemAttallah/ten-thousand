@@ -39,7 +39,6 @@ class GameLogic:
                     return score
 
         return score # this command to return the value that calculate_score method find it
-
     @staticmethod  # this command used to make the roll_dice method just accessible from GameLogic class
     def roll_dice(num_dice):
         '''
@@ -49,20 +48,3 @@ class GameLogic:
         return dice_roll
 
 
-
-def intro():
-    return("Welcome to Ten Thousand")
-
-num_round=1
-def start_play():
-    print("(y)es to play or (n)o to decline")
-    user_input=input("> ")
-    if user_input=="n":
-        print("OK. Maybe another time")
-    elif user_input=="y":
-        print(f"Starting round {num_round}")
-
-if __name__=="__main__":
-    print(intro())
-    start_play()
-    
