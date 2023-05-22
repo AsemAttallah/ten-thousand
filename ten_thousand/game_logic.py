@@ -46,5 +46,29 @@ class GameLogic:
         '''
         dice_roll = tuple(random.randint(1, 6) for _ in range(num_dice)) # In this variable we calculate 6 random number and add it to tuple 
         return dice_roll
-
+    
+    @staticmethod
+    def validate_keepers(roll, keepers):
+        roll_counts = {die: roll.count(die) for die in set(roll)}
+        keepers_counts = {die: keepers.count(die) for die in set(keepers)}
+        for die, count in keepers_counts.items():
+            if count > roll_counts.get(die, 0):
+                return False
+        return True
+    
+    @staticmethod
+    def get_scorers(dice):
+        scorers = []
+        counts = [0] * 7
+        for die in dice:
+            counts[die] += 1
+        for i, count in enumerate(counts):
+            if i == 1:
+                scorers.extend([1] * min(count, 3))
+            elif count >= 3:
+                scorers.extend([i] * 3)
+            elif i == 5:
+                scorers.extend([5] * count)
+        return scorers
+    
 

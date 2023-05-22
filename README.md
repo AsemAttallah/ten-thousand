@@ -1,4 +1,4 @@
-# LAB - Class 06
+# LAB - Class 08
 ## Project: Ten-Thousand
 ## Author: 
     * Driver: Asem Attallah
@@ -14,8 +14,8 @@
 
 
 ## How to initialize/run your application 
-    * python game_logic.py
+    * python play_game.py
 
 ## Tests
 ### How do you run tests?
-    * pytest -k version_1
+    * pytest -k version_3
