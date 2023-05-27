@@ -4,6 +4,19 @@ class GameLogic:
     '''
     This is class contain the logic of roll dice 10,000
     '''
+    @staticmethod
+    def get_scorers(dice):
+        all_dice_score = GameLogic.calculate_score(dice)
+        if all_dice_score == 0:
+            return tuple()
+        scorers = []
+        for i, val in enumerate(dice):
+            sub_roll = dice[:i] + dice[i+1:]
+            sub_score = GameLogic.calculate_score(sub_roll)
+            if sub_score != all_dice_score:
+                scorers.append(val)
+        return tuple(scorers)
+    
     @staticmethod # this command use to make the calculate_score method just accessible from GameLogic class
     def calculate_score(dice_roll): # this method used to calculate the score in the game 
         '''
@@ -49,6 +62,9 @@ class GameLogic:
     
     @staticmethod
     def validate_keepers(roll, keepers):
+        '''
+        this method help us to check ther is a cheating or not by checking if all selected value is include the random dices or not
+        '''
         roll_counts = {die: roll.count(die) for die in set(roll)}
         keepers_counts = {die: keepers.count(die) for die in set(keepers)}
         for die, count in keepers_counts.items():
@@ -56,19 +72,12 @@ class GameLogic:
                 return False
         return True
     
-    @staticmethod
-    def get_scorers(dice):
-        scorers = []
-        counts = [0] * 7
-        for die in dice:
-            counts[die] += 1
-        for i, count in enumerate(counts):
-            if i == 1:
-                scorers.extend([1] * min(count, 3))
-            elif count >= 3:
-                scorers.extend([i] * 3)
-            elif i == 5:
-                scorers.extend([5] * count)
-        return scorers
+    
+    def is_zilch(keepers):
+        '''
+        this method help us to check if score equal zero to appear a zilch message
+        '''
+        return GameLogic.calculate_score(keepers) == 0
+    
     
 

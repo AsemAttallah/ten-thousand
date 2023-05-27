@@ -1,9 +1,9 @@
-# LAB - Class 08
+# LAB - Class 09
 ## Project: Ten-Thousand
 ## Author: 
     * Driver: Asem Attallah
-    * Navigater: - Duaa Melhem
-                 - Hasan Alrawaqa
+    * Navigater: - Hasan Alrawaqa
+                 
 <hr>
 
 ## Setup .env requirements 
@@ -14,8 +14,8 @@
 
 
 ## How to initialize/run your application 
-    * python play_game.py
+    * python bots.py
 
 ## Tests
 ### How do you run tests?
-    * pytest -k version_3
+    * pytest 
