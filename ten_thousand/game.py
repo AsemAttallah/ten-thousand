@@ -31,12 +31,11 @@ class Game():
         round_score = 0
         total_score = 0
         round_num = 1
-        global remaining_dice
-        remaining_dice=6
+        remaining_dices=6
         while True:
              # Roll 6 dice
-            print(f"Rolling {remaining_dice} dice...")
-            dice_roll = specific_input(remaining_dice)
+            print(f"Rolling {remaining_dices} dice...")
+            dice_roll = specific_input(remaining_dices)
             var1=(" ".join(str(dice) for dice in dice_roll))
             print(f"*** {var1} ***")
             if GameLogic.is_zilch(dice_roll):
@@ -48,7 +47,7 @@ class Game():
                 round_num += 1
                 round_score = 0
                 print(f"Starting round {round_num}")
-                remaining_dice = 6
+                remaining_dices = 6
                 continue
             while True:
                 print("Enter dice to keep, or (q)uit:")
@@ -67,13 +66,13 @@ class Game():
             dice_to_keep = [int(die) for die in keep_dice if die.isdigit()]
             if len(dice_to_keep)==6:
                 round_score += GameLogic.calculate_score(dice_to_keep)
-                remaining_dice = 6
+                remaining_dices = 6
             else:
                 round_score += GameLogic.calculate_score(dice_to_keep)
-                remaining_dice -= len(dice_to_keep)
+                remaining_dices -= len(dice_to_keep)
             if GameLogic.calculate_score(dice_to_keep)!=0:
                 # Print the current round score and the number of remaining dice
-                print(f"You have {round_score} unbanked points and {remaining_dice} dice remaining")
+                print(f"You have {round_score} unbanked points and {remaining_dices} dice remaining")
                 # Prompt the user for the next action: roll again, bank points, or quit
                 print("(r)oll again, (b)ank your points or (q)uit:")
                 action = input("> ")
@@ -82,7 +81,7 @@ class Game():
                 total_score += round_score
                 print(f"You banked {round_score} points in round {round_num}")
                 print(f"Total score is {total_score} points")
-                remaining_dice = 6
+                remaining_dices = 6
                 round_num += 1
                 round_score = 0
                 print(f"Starting round {round_num}")
